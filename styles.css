@@ -1,0 +1,250 @@
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height: 100%; width: 100%; font-size: 100%; line-height: 1; font-size: 14px; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    > main {
+        flex: 1 1 auto;
+    }
+}
+
+[class*="__container"]{
+    max-width: 900px;
+    padding: 0px 10px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    background-color: #cae1be;
+}
+
+.header {
+    min-height: 60px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.header__title {
+    font-size: 30px;
+    text-align: center;
+}
+
+.drag-and-drop__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px 40px 0px;
+}
+
+.drag-and-drop__about {
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+@keyframes moveLeftToCenter {
+    0% {transform: translateY(-50%) translateX(0)}
+    50% {transform: translateY(-50%) translateX(50px)}
+    100% {transform: translateY(-50%) translateX(0)}
+}
+
+@keyframes moveRightToCenter {
+    0% {transform: translateY(-50%) translateX(0) }
+    50% {transform: translateY(-50%) translateX(-50px)}
+    100% {transform: translateY(-50%) translateX(0)}
+}
+
+.drag-and-drop__containers {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.drag-and-drop__containers >*{
+    flex: 0 0 calc(50% - 10px);
+}
+
+.drag-and-drop__subtitle {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.drag-and-drop__grid, 
+.drag-and-drop__absolute {
+    background-color: rgb(240, 235, 235);
+    aspect-ratio: 1;
+    border-radius: 10px;
+}
+
+.drag-and-drop__grid, .drag-and-drop__absolute{
+    border: 2px solid transparent;
+    background: linear-gradient(rgb(240, 235, 235), rgb(240, 235, 235)) padding-box, 
+                linear-gradient(to right, #bb2577, #3782ef) border-box;
+}
+
+.drag-and-drop__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    padding: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.drag-and-drop__absolute {
+    position: relative;
+    padding: 10px;
+}
+
+.drag-and-drop__item {
+    position: relative;
+    width: 35px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 1px solid #000;
+    z-index: 2;
+}
+
+.drag-and-drop__grid >*, .drag-and-drop__absolute >* {
+    width: 35px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.drag-and-drop__absolute {
+    position: relative;
+}
+
+.drag-and-drop__absolute >* {
+    position: absolute;
+}
+
+
+.drag-and-drop__item::before,
+.drag-and-drop__item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    aspect-ratio: 1;
+    background: red;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.drag-and-drop__item::before {
+    right: -30px;
+    clip-path: polygon(40% 20%, 40% 40%, 100% 40%, 100% 60%, 40% 60%, 40% 80%, 0 50%);
+    animation-name: moveLeftToCenter;
+}
+
+.drag-and-drop__item::after {
+    left: -30px;
+    clip-path: polygon(0 40%, 60% 40%, 60% 20%, 100% 50%, 60% 80%, 60% 60%, 0 60%);
+    animation-name: moveRightToCenter;
+}
+
+/* https://bennettfeely.com/clippy/ */
+/* Если уж спустился, советую глянуть))) */
+
+.drag-and-drop__clue {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    color: red;
+    font-size: 10px;
+    margin-top: 10px;
+    background-color: #eee;
+    border-radius: 50px;
+    z-index: 2147483647;
+    border: 1px solid #000;
+}
+
+@media (min-width: 500px) {
+    .drag-and-drop__grid {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .drag-and-drop__grid >*, .drag-and-drop__item, .drag-and-drop__absolute >*{
+        width: 60px;
+        border-radius: 15px;
+    }
+
+    .drag-and-drop__item::before,
+    .drag-and-drop__item::after {
+        width: 30px;
+    }
+
+    .drag-and-drop__item::before {
+        right: -50px;
+    }
+    
+    .drag-and-drop__item::after {
+        left: -50px;
+    }
+
+    .drag-and-drop__clue {
+        font-size: 20px;
+    }
+    .drag-and-drop__grid, .drag-and-drop__absolute{
+        border: 5px solid transparent;
+    }
+}
+
+@media (min-width: 666px) {
+    .drag-and-drop__grid >*, .drag-and-drop__item, .drag-and-drop__absolute >* {
+        width: 80px;
+        border-radius: 15px;
+    }
+    .drag-and-drop__grid, .drag-and-drop__absolute{
+        border: 5px solid transparent;
+    }
+}
+
+@media (min-width: 768px) {
+    .drag-and-drop__grid >*, .drag-and-drop__item, .drag-and-drop__absolute >* {
+        width: 105px;
+        border-radius: 20px;
+    }
+
+    .drag-and-drop__clue {
+        font-size: 30px;
+    }
+}
+
+.temp-grid-item {
+    animation: scale 1s infinite;
+}
+
+@keyframes scale {
+    0% { transform: scale(0.8) }
+    50% { transform: scale(1.1) }
+    100% { transform: scale(0.8) }
+}

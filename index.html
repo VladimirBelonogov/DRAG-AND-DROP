@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Перетаскивание</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+    
+        <header class="header">
+            <div class="header__container">
+                <h1 class="header__title">drag’n’drop</h1>
+            </div>
+        </header>
+    
+        <main class="main">
+            <div class="main__container">
+                <section class="drag-and-drop">
+                    <div class="drag-and-drop__items">
+                        <h2 class="drag-and-drop__about">
+                            Элемент ниже можно перетаскивать и вставлять в левый и правый контейнер<br>
+                            Поменять цвет квадрата можно кликнув на него
+                        </h2>
+                        <div class="drag-and-drop__item" id="draggable"> </div>
+                    </div>
+                    <div class="drag-and-drop__containers">
+                        <h3 class="drag-and-drop__subtitle">Размещение по сетке</h3>
+                        <h3 class="drag-and-drop__subtitle">Свободное размещение</h3>
+                        <div class="drag-and-drop__grid" id="drop-grid"></div>
+                        <div class="drag-and-drop__absolute" id="drop-absolute"></div>
+                        <div class="drag-and-drop__clue">Контейнер заполнен</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    
+    </div>
+
+</body>
+</html>
